@@ -13,6 +13,8 @@ const Tweet = () => {
     isRetweetedByCurrentUser,
     isLikedByCurrentUser,
     date,
+    numOfLikes,
+    reTweets,
   } = useContext(TweetContext);
   return (
     <Wrapper>
@@ -24,10 +26,16 @@ const Tweet = () => {
       <TweetContents>{tweetContents}</TweetContents>
       <Divider />
       <Timestamp>{date}</Timestamp>
+      <Stats>
+        <span>
+          {numOfLikes} Likes {reTweets} Retweets:
+        </span>
+      </Stats>
       <ActionBar
         isRetweetedByCurrentUser={isRetweetedByCurrentUser}
         isLikedByCurrentUser={isLikedByCurrentUser}
       />
+
       <Divider />
     </Wrapper>
   );
