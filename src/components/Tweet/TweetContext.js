@@ -8,16 +8,28 @@ export const TweetContext = React.createContext(null);
 export const TweetProvider = ({ children }) => {
   const date = moment().format("lll");
   const [numOfLikes, setNumOfLikes] = useState(460);
-  const [reTweets, setreTweets] = useState(65);
+  const [reTweets, setReTweets] = useState(65);
   const [isLiked, setIsLiked] = useState(false);
   const [isReTweeted, setIsReTweeted] = useState(false);
 
-  const toggleNumofLikes = () => {
+  const handleToggleLike = () => {
     if (!isLiked) {
+      setIsLiked(true);
+      setNumOfLikes(numOfLikes + 1);
+    } else {
+      setIsLiked(false);
       setNumOfLikes(numOfLikes - 1);
     }
   };
-
+  const handleReTweet = () => {
+    if (!isReTweeted) {
+      setIsReTweeted(true);
+      setReTweets(reTweets + 1);
+    } else {
+      setIsReTweeted(false);
+      setReTweets(reTweets - 1);
+    }
+  };
   return (
     <TweetContext.Provider
       value={{
@@ -30,7 +42,8 @@ export const TweetProvider = ({ children }) => {
         date,
         numOfLikes,
         reTweets,
-        toggleNumofLikes,
+        handleToggleLike: handleToggleLike,
+        handleReTweet: handleReTweet,
       }}
     >
       {children}

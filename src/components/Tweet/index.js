@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { TweetContext } from "./TweetContext";
 import Header from "./Header";
+import Stat from "./Stat";
 import ActionBar from "./ActionBar";
 
 const Tweet = () => {
@@ -27,9 +28,10 @@ const Tweet = () => {
       <Divider />
       <Timestamp>{date}</Timestamp>
       <Stats>
-        <span>
-          {numOfLikes} Likes {reTweets} Retweets:
-        </span>
+        <Likesbar>
+          <Stat num={numOfLikes} textLabel="Likes" />{" "}
+          <Stat num={reTweets} textLabel="Retweet" />
+        </Likesbar>
       </Stats>
       <ActionBar
         isRetweetedByCurrentUser={isRetweetedByCurrentUser}
@@ -71,5 +73,7 @@ const Stats = styled.div`
   align-items: center;
   height: 48px;
 `;
-
+const Likesbar = styled.div`
+  display: flex;
+`;
 export default Tweet;
